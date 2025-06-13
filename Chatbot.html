@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nietzsche AI | Philosophical Dialogue Bot</title>
+    <meta name="description" content="Converse with Nietzsche's philosophy through AI. Powered by GPT-4 and Nietzsche's original texts">
+    <meta name="keywords" content="Nietzsche, philosophy chatbot, AI philosophy, Friedrich Nietzsche">
+    <!-- n8n Chat CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat@0.19.0/dist/style.css" rel="stylesheet" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #181818 80%, #d4af37 100%);
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      }
+    </style>
+</head>
+<body>
+    <!-- Place the chat widget where you want it to appear -->
+    <n8nchatui-inpage></n8nchatui-inpage>
+    <script type="module">
+      import Chatbot from "https://cdn.n8nchatui.com/v1/embed.js";
+      Chatbot.initFull({
+        "n8nChatUrl": "http://localhost:5678/webhook/2757e932-5a99-4d71-93dd-84436cd010c3/chat",
+        "metadata": {},
+        "theme": {
+          "button": {
+            "iconColor": "#373434",
+            "backgroundColor": "#ffc8b8"
+          },
+          "chatWindow": {
+            "borderRadiusStyle": "rounded",
+            "avatarBorderRadius": 25,
+            "messageBorderRadius": 6,
+            "showTitle": true,
+            "title": "Nietzsche AI",
+            "titleAvatarSrc": "Nietzsche.jpeg",
+            "welcomeMessage": "Welcome, wanderer. 'He who has a why to live can bear almost any how.' Ask, and let us philosophize.",
+            "errorMessage": "Please connect me to n8n first",
+            "backgroundColor": "#181818",
+            "height": 0,
+            "width": 0,
+            "fontSize": 16,
+            "starterPrompts": [
+              "What is the will to power?",
+              "What does 'God is dead' mean?",
+              "How can I become who I am?"
+            ],
+            "starterPromptFontSize": 15,
+            "renderHTML": false,
+            "clearChatOnReload": false,
+            "botMessage": {
+              "backgroundColor": "#222",
+              "textColor": "#d4af37",
+              "showAvatar": true,
+              "avatarSrc": "NTSS.jpeg"
+            },
+            "userMessage": {
+              "backgroundColor": "#fff6f3",
+              "textColor": "#050505",
+              "showAvatar": true,
+              "avatarSrc": "WOJAK.jpeg"
+            },
+            "textInput": {
+              "placeholder": "Speak your truth...",
+              "backgroundColor": "#222",
+              "textColor": "#d4af37",
+              "sendButtonColor": "#d4af37",
+              "maxChars": 3000,
+              "maxCharsWarningMessage": "You exceeded the character limit. Please input less than 100 characters.",
+              "autoFocus": false,
+              "borderRadius": 6,
+              "sendButtonBorderRadius": 50
+            },
+            "uploadsConfig": {
+              "enabled": true,
+              "acceptFileTypes": [
+                "jpeg",
+                "jpg",
+                "png",
+                "pdf"
+              ],
+              "maxFiles": 5,
+              "maxSizeInMB": 10
+            },
+            "voiceInputConfig": {
+              "enabled": true,
+              "maxRecordingTime": 15,
+              "recordingNotSupportedMessage": "To record audio, use modern browsers like Chrome or Firefox that support audio recording"
+            }
+          }
+        }
+      });
+    </script>
+</body>
+</html>
