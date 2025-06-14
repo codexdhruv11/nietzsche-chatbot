@@ -43,7 +43,7 @@ python -m http.server 8000
 
 4. Open in browser:
 ```
-http://localhost:8000
+[http://localhost:8000](https://codexdhruv11.github.io/nietzsche-chatbot/)
 ```
 
 ## Customization
