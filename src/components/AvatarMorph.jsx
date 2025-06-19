@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 const AvatarMorph = ({ mood, theme }) => {
-  const imagePath = "/NT.jpeg";
+  const imagePath = "./NT.jpeg";
 
   return (
     <div className="avatar-container" style={{ position: 'relative' }}>
