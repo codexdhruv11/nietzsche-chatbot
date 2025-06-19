@@ -1,0 +1,250 @@
+/* ===== CANDLE FLICKER EFFECT ===== */
+@keyframes flicker {
+  0%, 100% { opacity: 0.8; transform: translateY(0); }
+  25% { opacity: 1; transform: translateY(-2px); }
+  50% { opacity: 0.7; transform: translateY(0); }
+  75% { opacity: 0.9; transform: translateY(-1px); }
+}
+
+/* Apply to bot messages */
+.message-bubble.bot {
+  animation: flicker 0.6s ease-in;
+  position: relative;
+}
+
+/* Create subtle glow effect */
+.message-bubble.bot::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle, rgba(201, 162, 39, 0.2) 0%, transparent 70%);
+  border-radius: 24px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.message-bubble.bot:hover::before {
+  opacity: 1;
+}
+
+/* ===== AVATAR PULSE ANIMATION ===== */
+@keyframes moodPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(201, 162, 39, 0);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(201, 162, 39, 0.5);
+  }
+}
+
+.avatar-container.pulse {
+  animation: moodPulse 2s ease-in-out;
+}
+
+/* ===== TYPHOGRAPHY EFFECTS ===== */
+/* Profound quote fade-in */
+@keyframes profoundFadeIn {
+  0% { 
+    opacity: 0;
+    letter-spacing: 1px;
+    transform: translateY(10px);
+  }
+  100% { 
+    opacity: 1;
+    letter-spacing: normal;
+    transform: translateY(0);
+  }
+}
+
+.profound-quote {
+  font-family: 'monaco', 'monospace';
+  font-style: italic;
+  position: relative;
+  padding-left: 20px;
+  letter-spacing: 0.5px;
+  animation: fadeIn 1.5s ease-out;
+  display: inline-block;
+}
+
+/* Glossary term underline animation */
+.glossary-term span {
+  position: relative;
+}
+
+.glossary-term span::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.glossary-term span:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ===== MOUNTAIN PARALLAX ===== */
+@keyframes mountainDrift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.dynamic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  animation: mountainDrift 30s ease-in-out infinite;
+}
+
+/* ===== THEME TRANSITIONS ===== */
+/* Smooth theme transitions */
+body, .message-bubble, .input-area input {
+  transition: 
+    background-color 0.8s ease,
+    color 0.8s ease,
+    border-color 0.8s ease;
+}
+
+.theme-toggle {
+  transition: transform 0.3s ease, color 0.5s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* ===== LOADING INDICATOR ===== */
+@keyframes typingPulse {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+.typing-indicator span {
+  animation: typingPulse 1.2s infinite ease-in-out !important;
+  background-color: var(--accent) !important;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ===== SCROLL INDICATOR ===== */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.messages-window::after {
+  content: "↓";
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  animation: scrollBounce 1.5s infinite;
+  opacity: 0.6;
+  font-size: 1.2rem;
+}
+
+/* ===== RESPONSIVE ANIMATIONS ===== */
+@media (max-width: 768px) {
+  @keyframes mobileAvatarFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  .avatar-container {
+    animation: mobileAvatarFloat 4s ease-in-out infinite;
+  }
+}
+
+/* Add pulse animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(201, 162, 39, 0); }
+  50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(201, 162, 39, 0.5); }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Add fade-in for messages */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message-bubble {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Ensure animations are applied correctly */
+.message-bubble {
+  animation: fadeIn 0.5s ease-out !important;
+}
+
+/* ADD THESE FIXES */
+
+/* Ensure animations are applied correctly */
+.message-bubble {
+  animation: fadeIn 0.5s ease-out !important;
+}
+
+.avatar-container.pulse {
+  animation: moodPulse 2s ease-in-out;
+}
+
+/* Fix ink blot positioning */
+.ink-blot {
+  z-index: -1 !important;
+}
+
+/* Fix typing indicator */
+.typing-indicator span {
+  background-color: var(--accent) !important;
+  animation: typingPulse 1.2s infinite ease-in-out !important;
+}
+
+/* Add this new animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== COSMIC THEME ANIMATIONS ===== */
+@keyframes cosmicPulse {
+  0% { opacity: 0.3; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.3; transform: scale(0.95); }
+}
+
+body[data-theme="cosmic"] .dynamic-background {
+  animation: cosmicPulse 20s infinite ease-in-out;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.star-dust {
+  animation: starTwinkle 3s infinite ease-in-out;
+}

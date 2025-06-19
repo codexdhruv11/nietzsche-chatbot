@@ -1,0 +1,338 @@
+/* Remove existing font imports */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'monaco', 'monospace'; /* Add this line */
+}
+
+/* ...rest of your CSS, with all font-family declarations removed... */
+
+:root {
+  /* Dark Theme Default */
+  --bg-primary: #121212;
+  --text-primary: #e0e0e0;
+  --accent: #c9a227;
+  --user-bubble: #2c2c2c;
+  --bot-bubble: #1a1a1a;
+  --input-bg: #1e1e1e;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.8s ease, color 0.8s ease !important;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.app {
+  width: 100%;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  min-height: auto;
+  margin: 0;
+  padding: 1.5rem;
+  background: rgba(30, 30, 30, 0.95);  /* More opaque */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 1.8rem;
+  z-index: 10;
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 10;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: none;
+  background: transparent !important;
+}
+
+.messages-window {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(30, 30, 30, 0.98) !important;  /* Nearly opaque */
+  backdrop-filter: none !important;              /* Disable blur */
+  -webkit-backdrop-filter: none !important;
+  position: relative;
+  max-width: 100%;
+  min-height: 0;
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  border-radius: 8px;
+}
+
+/* Scroll indicator */
+.messages-window {
+  overflow-y: auto;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 18px;
+  position: relative;
+  line-height: 1.5;
+  background: rgba(26, 26, 26, 1) !important;  /* Solid */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(201, 162, 39, 0.3) !important;
+  animation: fadeIn 0.5s ease-out !important;
+  color: #f0f0f0 !important; /* Brighter text */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); /* Stronger shadow */
+}
+
+.message-bubble.user {
+  align-self: flex-end;
+  background: rgba(25, 25, 25, 0.85) !important;
+  border: 1px solid rgba(201, 162, 39, 0.5) !important;
+  border-bottom-right-radius: 4px;
+  border-right: 3px solid var(--accent);
+  padding-right: 10px;
+}
+
+.message-bubble.bot {
+  align-self: flex-start;
+  background: rgba(15, 15, 15, 0.85) !important;
+  border: 1px solid var(--accent);
+  border-bottom-left-radius: 4px;
+  border-left: 3px solid var(--accent);
+  padding-left: 10px;
+}
+
+.philosophy-icon {
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  background: var(--bg-primary);
+  border-radius: 50%;
+  padding: 3px;
+  font-size: 0.8rem;
+}
+
+.input-area {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid var(--accent);
+  background: rgba(30, 30, 30, 0.7) !important;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  background: rgba(30, 30, 30, 0.95) !important;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.input-area input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 24px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+}
+
+.input-area button {
+  margin-left: 0.5rem;
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--bg-primary);
+}
+
+.typing-indicator {
+  display: flex;
+  padding: 10px;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  margin: 0 2px;
+  background-color: var(--text-primary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+
+/* Add to existing animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Update existing styles */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 10;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg);
+}
+
+.export-pdf-button {
+  background: var(--accent) !important;
+  color: #000 !important;
+  border: none;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 15px auto;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.export-pdf-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(201, 162, 39, 0.4);
+}
+
+/* Add glass effect to mood graph */
+.mood-graph-container {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  margin: 0 auto 1rem;
+  padding: 10px;
+  width: 95%;
+}
+
+/* Ensure pulse animation works */
+.avatar-container.pulse {
+  display: block !important;
+  animation: moodPulse 2s ease-in-out;
+}
+
+/* Fix message bubble animations */
+.message-bubble {
+  animation: fadeIn 0.5s ease-out !important;
+}
+
+/* Make sure theme transitions work */
+body {
+  transition: background-color 0.8s ease, color 0.8s ease !important;
+}
+
+/* Fix z-index for ink blots */
+.ink-blot {
+  z-index: -1 !important;
+}
+
+/* Markdown content styles */
+.markdown-content {
+  line-height: 1.6;
+}
+
+.markdown-content h1, 
+.markdown-content h2, 
+.markdown-content h3 {
+  margin: 0.8em 0 0.4em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.markdown-content p {
+  margin: 0.5em 0;
+}
+
+.markdown-content ul {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.markdown-content li {
+  margin: 0.3em 0;
+}
+
+/* Add to :root */
+[data-theme="cosmic"] {
+  --bg-primary: #0c1445;
+  --text-primary: #e0e0e0;
+  --accent: #c9a227;
+  --user-bubble: rgba(44, 26, 74, 0.85);
+  --bot-bubble: rgba(12, 20, 69, 0.85);
+  --input-bg: rgba(44, 26, 74, 0.7);
+}
+
+/* COSMIC-SPECIFIC STYLES */
+body[data-theme="cosmic"] .message-bubble {
+  border: 1px solid rgba(201, 162, 39, 0.5) !important;
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+body[data-theme="cosmic"] .input-area {
+  background: rgba(12, 20, 69, 0.9) !important;
+  border: 1px solid var(--accent);
+}
+
+body[data-theme="cosmic"] .theme-toggle {
+  color: #c9a227;
+  text-shadow: 0 0 8px rgba(201, 162, 39, 0.7);
+}
